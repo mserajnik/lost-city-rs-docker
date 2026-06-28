@@ -1,12 +1,12 @@
-# lostcityrs-docker
+# lost-city-rs-docker
 
 [![Lint status][badge-lint-status]][badge-lint-status-url]
 [![Build status][badge-build-status]][badge-build-status-url]
 
 > A Docker setup for Lost City RS
 
-This is a simple, Docker-based solution for running [Lost City RS][lostcityrs].
-It offers:
+This is a simple, Docker-based solution for running
+[Lost City RS][lost-city-rs]. It offers:
 
 - __Prebuilt Docker images for both `amd64` and `arm64`, leveraging GitHub__
   __Actions:__ simply pull the provided image for your architecture and get
@@ -66,7 +66,7 @@ installed, you can try a prompt similar to the following one to have it assist
 you with the installation process:
 
 ```
-Help me install and set up https://github.com/mserajnik/lostcityrs-docker.
+Help me install and set up https://github.com/mserajnik/lost-city-rs-docker.
 First, clone the repository and read the README carefully.
 Then guide me through the installation process step by step, following the
 README closely.
@@ -104,8 +104,8 @@ First, clone the repository and create a copy of the Docker Compose example
 configuration:
 
 ```sh
-git clone https://github.com/mserajnik/lostcityrs-docker.git
-cd lostcityrs-docker
+git clone https://github.com/mserajnik/lost-city-rs-docker.git
+cd lost-city-rs-docker
 cp ./compose.yaml.example ./compose.yaml
 ```
 
@@ -113,13 +113,13 @@ Next, adjust your `compose.yaml`. The first thing to decide on is which Docker
 image you want to use based on the version of Lost City RS you want to run. You
 can currently choose from the following versions:
 
-| Supported version | Image                                |
-| ----------------- | ------------------------------------ |
-| `274`             | `ghcr.io/mserajnik/lostcityrs:274`   |
-| `254`             | `ghcr.io/mserajnik/lostcityrs:254`   |
-| `245.2`           | `ghcr.io/mserajnik/lostcityrs:245.2` |
-| `244`             | `ghcr.io/mserajnik/lostcityrs:244`   |
-| `225`             | `ghcr.io/mserajnik/lostcityrs:225`   |
+| Supported version | Image                                  |
+| ----------------- | -------------------------------------- |
+| `274`             | `ghcr.io/mserajnik/lost-city-rs:274`   |
+| `254`             | `ghcr.io/mserajnik/lost-city-rs:254`   |
+| `245.2`           | `ghcr.io/mserajnik/lost-city-rs:245.2` |
+| `244`             | `ghcr.io/mserajnik/lost-city-rs:244`   |
+| `225`             | `ghcr.io/mserajnik/lost-city-rs:225`   |
 
 > [!NOTE]
 > As new Lost City RS versions become fully playable, further images will be
@@ -193,7 +193,19 @@ options (that you may want to incorporate into your configuration).
 
 Sometimes, there may be new features or changes that require manual
 intervention. Such breaking changes will be listed here (and removed again once
-they become irrelevant).
+they become irrelevant), sorted by newest first:
+
+- __[2026-06-28] - The repository, published image, and in-container paths were
+  renamed for readability:__ the repository moved from `lostcityrs-docker` to
+  `lost-city-rs-docker`, the published image from
+  `ghcr.io/mserajnik/lostcityrs` to `ghcr.io/mserajnik/lost-city-rs`, and the
+  in-container paths from `/opt/lostcityrs` to `/opt/lost-city-rs`. To update
+  an existing installation, change the `image:` and the bind-mount target paths
+  under `volumes:` (`/opt/lost-city-rs/database` and
+  `/opt/lost-city-rs/engine/data/players`) in your `compose.yaml` to match the
+  updated [example Compose configuration](compose.yaml.example). GitHub
+  redirects the old repository URL, so existing clones keep working, but you
+  may want to update your Git remote to the new name as well.
 
 ## Maintainer
 
@@ -215,26 +227,26 @@ This project follows the [REUSE specification][reuse-spec].
 
 ## Disclaimer
 
-lostcityrs-docker is an independent, community-made Docker setup for the
-open-source [Lost City RS][lostcityrs] project. It is not affiliated with,
+lost-city-rs-docker is an independent, community-made Docker setup for the
+open-source [Lost City RS][lost-city-rs] project. It is not affiliated with,
 endorsed by, or sponsored by Jagex Limited, and it is not an official Lost City
 RS project.
 
 It is intended for private, non-commercial use only and comes with no warranty.
 
-[badge-build-status]: https://github.com/mserajnik/lostcityrs-docker/actions/workflows/build-docker-images.yaml/badge.svg
-[badge-build-status-url]: https://github.com/mserajnik/lostcityrs-docker/actions/workflows/build-docker-images.yaml
-[badge-lint-status]: https://github.com/mserajnik/lostcityrs-docker/actions/workflows/lint.yaml/badge.svg
-[badge-lint-status-url]: https://github.com/mserajnik/lostcityrs-docker/actions/workflows/lint.yaml
+[badge-build-status]: https://github.com/mserajnik/lost-city-rs-docker/actions/workflows/build-docker-images.yaml/badge.svg
+[badge-build-status-url]: https://github.com/mserajnik/lost-city-rs-docker/actions/workflows/build-docker-images.yaml
+[badge-lint-status]: https://github.com/mserajnik/lost-city-rs-docker/actions/workflows/lint.yaml/badge.svg
+[badge-lint-status-url]: https://github.com/mserajnik/lost-city-rs-docker/actions/workflows/lint.yaml
 [claude-code]: https://www.anthropic.com/product/claude-code
 [codex]: https://openai.com/codex
 [docker]: https://docs.docker.com/get-docker/
 [docker-compose]: https://docs.docker.com/compose/install/
-[lostcityrs]: https://github.com/LostCityRS
-[issues]: https://github.com/mserajnik/lostcityrs-docker/issues
+[lost-city-rs]: https://github.com/LostCityRS
+[issues]: https://github.com/mserajnik/lost-city-rs-docker/issues
 [license-agpl-3.0-or-later]: LICENSES/AGPL-3.0-or-later.txt
 [license-cc-by-sa-4.0]: LICENSES/CC-BY-SA-4.0.txt
 [license-cc0-1.0]: LICENSES/CC0-1.0.txt
 [maintainer]: https://github.com/mserajnik
-[pull-requests]: https://github.com/mserajnik/lostcityrs-docker/pulls
+[pull-requests]: https://github.com/mserajnik/lost-city-rs-docker/pulls
 [reuse-spec]: https://reuse.software/spec/

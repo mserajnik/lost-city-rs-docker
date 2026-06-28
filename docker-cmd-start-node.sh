@@ -20,9 +20,9 @@ set -eu
 
 eval "$(fixuid -q)"
 
-cd /opt/lostcityrs/engine
+cd /opt/lost-city-rs/engine
 
-echo "[lostcityrs-docker]: Generating world configuration from environment variables."
+echo "[lost-city-rs-docker]: Generating world configuration from environment variables."
 
 rm -f data/config/world.json
 

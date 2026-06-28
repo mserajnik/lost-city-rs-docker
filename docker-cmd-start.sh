@@ -10,7 +10,7 @@ set -eu
 
 eval "$(fixuid -q)"
 
-cd /opt/lostcityrs/engine
+cd /opt/lost-city-rs/engine
 
 bun sqlite:migrate
 

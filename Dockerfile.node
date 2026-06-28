@@ -9,8 +9,8 @@ ARG LOST_CITY_RS_CONTENT_REPOSITORY=https://github.com/LostCityRS/Content.git
 ARG LOST_CITY_RS_CONTENT_REVISION=${LOST_CITY_RS_VERSION}
 ARG LOST_CITY_RS_USER_ID=1000
 ARG LOST_CITY_RS_GROUP_ID=1000
-ARG LOST_CITY_RS_USER_NAME=lostcityrs
-ARG LOST_CITY_RS_GROUP_NAME=lostcityrs
+ARG LOST_CITY_RS_USER_NAME=lost-city-rs
+ARG LOST_CITY_RS_GROUP_NAME=lost-city-rs
 
 FROM node:24-trixie-slim
 
@@ -85,14 +85,14 @@ RUN \
   else \
     useradd -l -u "$LOST_CITY_RS_USER_ID" -g "$LOST_CITY_RS_GROUP_NAME" -d "/home/$LOST_CITY_RS_USER_NAME" -s /bin/sh -m "$LOST_CITY_RS_USER_NAME"; \
   fi && \
-  mkdir -p /opt/lostcityrs && \
-  git clone "$LOST_CITY_RS_ENGINE_REPOSITORY" /opt/lostcityrs/engine && \
-  git -C /opt/lostcityrs/engine -c advice.detachedHead=false checkout "$LOST_CITY_RS_ENGINE_REVISION" && \
-  rm -rf /opt/lostcityrs/engine/.git && \
-  git clone "$LOST_CITY_RS_CONTENT_REPOSITORY" /opt/lostcityrs/content && \
-  git -C /opt/lostcityrs/content -c advice.detachedHead=false checkout "$LOST_CITY_RS_CONTENT_REVISION" && \
-  rm -rf /opt/lostcityrs/content/.git && \
-  chown -R "$LOST_CITY_RS_USER_NAME:$LOST_CITY_RS_GROUP_NAME" /opt/lostcityrs && \
+  mkdir -p /opt/lost-city-rs && \
+  git clone "$LOST_CITY_RS_ENGINE_REPOSITORY" /opt/lost-city-rs/engine && \
+  git -C /opt/lost-city-rs/engine -c advice.detachedHead=false checkout "$LOST_CITY_RS_ENGINE_REVISION" && \
+  rm -rf /opt/lost-city-rs/engine/.git && \
+  git clone "$LOST_CITY_RS_CONTENT_REPOSITORY" /opt/lost-city-rs/content && \
+  git -C /opt/lost-city-rs/content -c advice.detachedHead=false checkout "$LOST_CITY_RS_CONTENT_REVISION" && \
+  rm -rf /opt/lost-city-rs/content/.git && \
+  chown -R "$LOST_CITY_RS_USER_NAME:$LOST_CITY_RS_GROUP_NAME" /opt/lost-city-rs && \
   # See https://github.com/boxboat/fixuid
   curl -SsL "https://github.com/boxboat/fixuid/releases/download/v0.6.0/fixuid-0.6.0-linux-$TARGETARCH.tar.gz" -o /tmp/fixuid.tar.gz && \
   tar -C /usr/local/bin -xzf /tmp/fixuid.tar.gz && \
@@ -117,11 +117,11 @@ USER $LOST_CITY_RS_USER_NAME
 # WAL mode is currently not used by default, but we create the required
 # symlinks anyway for future-proofing.
 RUN \
-  mkdir /opt/lostcityrs/database && \
+  mkdir /opt/lost-city-rs/database && \
   for suffix in "" "-journal" "-shm" "-wal"; do \
-    ln -sn "/opt/lostcityrs/database/db.sqlite$suffix" "/opt/lostcityrs/engine/db.sqlite$suffix"; \
+    ln -sn "/opt/lost-city-rs/database/db.sqlite$suffix" "/opt/lost-city-rs/engine/db.sqlite$suffix"; \
   done && \
-  cd /opt/lostcityrs/engine && \
+  cd /opt/lost-city-rs/engine && \
   npm ci
 
 WORKDIR "/home/$LOST_CITY_RS_USER_NAME"
