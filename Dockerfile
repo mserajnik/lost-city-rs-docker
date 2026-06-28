@@ -76,6 +76,7 @@ RUN \
   # of the user and group that should be used in the container, we need to
   # either rename the existing user and group or create a new user and group
   # with the specified name, UID and GID.
+  cd /tmp && \
   existing_group=$(getent group "$LOST_CITY_RS_GROUP_ID") || true && \
   existing_user=$(getent passwd "$LOST_CITY_RS_USER_ID") || true && \
   if [ -n "$existing_group" ]; then \
