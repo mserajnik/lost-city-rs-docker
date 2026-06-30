@@ -18,7 +18,7 @@
 # - `.gitignore`: surfaces changes to persisted paths (the SQLite database
 #   filenames and the player save directory are listed here), so a renamed
 #   database file or a new persistent data directory is caught.
-# - The SQLite migration set (`prisma/singleworld/migrations`): additions,
+# - The SQLite migration set (`prisma/singleworld/migrations/`): additions,
 #   changes, removals, or a wholesale layout rewrite, any of which can break
 #   `prisma migrate deploy` against a database that has already been migrated.
 #

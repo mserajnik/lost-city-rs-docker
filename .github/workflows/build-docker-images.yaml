@@ -17,8 +17,8 @@ on:
       - .github/workflows/build-docker-images.yaml
       - Dockerfile
       - Dockerfile.node
-      - docker-cmd-start.sh
       - docker-cmd-start-node.sh
+      - docker-cmd-start.sh
   pull_request:
     branches:
       - master
@@ -29,8 +29,8 @@ on:
       - .github/workflows/build-docker-images.yaml
       - Dockerfile
       - Dockerfile.node
-      - docker-cmd-start.sh
       - docker-cmd-start-node.sh
+      - docker-cmd-start.sh
   workflow_dispatch:
     inputs:
       force_rebuild:
