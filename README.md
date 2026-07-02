@@ -9,12 +9,12 @@ This is a simple, Docker-based solution for running
 [Lost City RS][lost-city-rs]. It offers:
 
 - __Prebuilt Docker images for both `amd64` and `arm64`, leveraging GitHub__
-  __Actions:__ simply pull the provided image for your architecture and get
+  __Actions__: simply pull the provided image for your architecture and get
   started.
 - __The ability to run Lost City RS configured for any of its supported__
-  __versions:__ prebuilt images for all fully playable versions ranging from
+  __versions__: prebuilt images for all fully playable versions ranging from
   `225` to `274` are provided.
-- __Seamless, automated database migrations:__ when pulling the latest Docker
+- __Seamless, automated database migrations__: when pulling the latest Docker
   image and re-creating the container, migrations are applied automatically to
   keep your database up to date at all times.
 
