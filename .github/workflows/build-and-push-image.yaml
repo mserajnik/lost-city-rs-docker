@@ -42,7 +42,7 @@ env:
 jobs:
   prepare:
     name: Prepare build metadata
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
     outputs:
@@ -76,7 +76,7 @@ jobs:
     name: Build amd64 image
     needs: prepare
     if: ${{ needs.prepare.outputs.build_amd64 == 'true' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: write
@@ -135,7 +135,7 @@ jobs:
     name: Build arm64 image
     needs: prepare
     if: ${{ needs.prepare.outputs.build_arm64 == 'true' }}
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-26.04-arm
     permissions:
       contents: read
       packages: write
@@ -194,7 +194,7 @@ jobs:
     name: Create multi-platform image index
     needs: [prepare, build-amd64, build-arm64]
     if: ${{ inputs.push_images && needs.prepare.outputs.is_multi_arch == 'true' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: write
@@ -228,7 +228,7 @@ jobs:
     name: Clean up untagged package versions
     needs: [prepare, build-amd64, build-arm64, create-multi-platform-image-index]
     if: ${{ always() && inputs.push_images && needs.prepare.outputs.is_multi_arch == 'true' && needs.create-multi-platform-image-index.result != 'success' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: write

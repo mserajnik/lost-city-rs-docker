@@ -41,7 +41,7 @@ on:
 jobs:
   setup:
     name: Setup
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: read
@@ -132,7 +132,7 @@ jobs:
     name: Delete old package versions
     needs: [setup, build-and-push-images]
     if: ${{ needs.setup.outputs.any_images_to_build == 'true' && github.event_name != 'pull_request' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       packages: write
 
